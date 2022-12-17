@@ -42,11 +42,11 @@ class AuthPageHelper(BasePage):
         tel_tab_active = self.find_element(AuthLocators.TEL_TAB_ACTIVE)
         return tel_tab_active
 
-    def select_mail_tab(self):
+    def select_email_tab(self):
         mail_tab = self.find_element(AuthLocators.MAIL_TAB_LOCATOR)
         return mail_tab.click()
 
-    def check_mail_tab_active(self):
+    def check_email_tab_active(self):
         mail_tab_active = self.find_element(AuthLocators.MAIL_TAB_ACTIVE)
         return mail_tab_active
 

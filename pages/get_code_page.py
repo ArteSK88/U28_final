@@ -9,6 +9,7 @@ class GetCodeLocators():
     BACK_TO_ONE_TIME_CODE_BUTTON_LOCATOR = (By.ID, "back_to_otp_btn")
 
     SIX_DIGIT_LOCATOR = (By.CSS_SELECTOR, "div.sdi-container--medium")
+    INPUT_CODE_LOCATOR = (By.CSS_SELECTOR, "input.code-input__input")
     CHANGE_EMAIL_LOCATOR = (By.NAME, "otp_back_phone")
     COUNTDOWN_LOCATOR = (By.CSS_SELECTOR, "span.code-input-container__timeout")
 
@@ -37,6 +38,10 @@ class GetCodePageHelper(BasePage):
 
     def check_code_input_field(self):
         return self.find_element(GetCodeLocators.SIX_DIGIT_LOCATOR)
+
+    def enter_one_time_code(self, code):
+        code_input = self.find_element(GetCodeLocators.INPUT_CODE_LOCATOR)
+        return code_input.send_keys(code)
 
     def check_change_email_link(self):
         return self.find_element(GetCodeLocators.CHANGE_EMAIL_LOCATOR).text

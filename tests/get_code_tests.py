@@ -5,27 +5,25 @@ from test_data import TestDataSet
 from pages.reg_page import RegPageHelper
 
 
-def test_key_web_one_time_code_captcha(browser, key_web_open_homepage):
+@pytest.mark.xfail(AuthPageHelper.check_captcha, reason="captcha")
+@pytest.mark.parametrize("email", ["mymail@mail.com", "+79261111111"])
+def test_key_web_invalid_one_time_code(browser, key_web_open_homepage, email):
     auth_page = AuthPageHelper(browser)
     reg_page = RegPageHelper(browser)
     get_code_page = GetCodePageHelper(browser)
     auth_page.keyweb_click_on_enter_button()
-    reg_page.enter_email("mymail@mail.com")
-    auth_page.input_captcha("Aagberef7H")
+    reg_page.enter_email(email)
     get_code_page.click_on_get_code()
-    assert auth_page.check_error_message() == "Неверно введен текст с картинки"
+    get_code_page.enter_one_time_code("123456")
+    assert auth_page.check_error_message() == "Неверный код. Повторите попытку"
 
 
-def test_key_web_enter_with_pswd_captcha(browser, key_web_open_homepage):
+def test_key_web_go_to_pswd_auth_page(browser, key_web_open_homepage):
     auth_page = AuthPageHelper(browser)
     get_code_page = GetCodePageHelper(browser)
     auth_page.keyweb_click_on_enter_button()
     get_code_page.click_on_enter_with_pswd_button()
-    auth_page.enter_username("billy")
-    auth_page.enter_password("123456N8b")
-    auth_page.input_captcha("Aagberef7H")
-    auth_page.click_on_enter_button()
-    assert auth_page.check_error_message() == "Неверно введен текст с картинки"
+    assert get_code_page.keyweb_check_page_title() == "Авторизация"
 
 
 def test_key_web_return_to_one_time_code(browser, key_web_open_homepage):
@@ -37,12 +35,11 @@ def test_key_web_return_to_one_time_code(browser, key_web_open_homepage):
     assert get_code_page.keyweb_check_page_title() == "Авторизация по коду"
 
 
+@pytest.mark.xfail(AuthPageHelper.check_captcha, reason="captcha and/or email should belong to an existing user")
 def test_onlime_get_one_time_code_by_email(browser, onlime_open_homepage):
     reg_page = RegPageHelper(browser)
     get_code_page = GetCodePageHelper(browser)
-    # нужно ввести реальный имейл, для которого есть учетка
-    email = "artesk0788@gmail.com"
-    # email = "mailoedwards@gmail.com"
+    email = "mailoedwards@gmail.com"
     reg_page.enter_email(email)
     get_code_page.click_on_get_code()
     assert email in get_code_page.check_sent_code_confirm_message()
@@ -51,17 +48,8 @@ def test_onlime_get_one_time_code_by_email(browser, onlime_open_homepage):
     assert "Получить код повторно можно через" in get_code_page.check_countdown()
 
 
-def test_smarthome_authorize_captcha(browser, smarthome_open_homepage):
-    auth_page = AuthPageHelper(browser)
-    reg_page = RegPageHelper(browser)
-    get_code_page = GetCodePageHelper(browser)
-    reg_page.enter_email("9266291111")
-    get_code_page.click_on_get_code()
-    assert auth_page.check_error_message() == "Неверно введен текст с картинки"
-
-
-@pytest.mark.xfail(reason='captcha')
-def test_smarthome_authorize_positive(browser, smarthome_open_homepage):
+@pytest.mark.xfail(AuthPageHelper.check_captcha, reason="captcha")
+def test_smarthome_get_code_positive(browser, smarthome_open_homepage):
     reg_page = RegPageHelper(browser)
     get_code_page = GetCodePageHelper(browser)
     phone = "9266291111"
@@ -71,17 +59,9 @@ def test_smarthome_authorize_positive(browser, smarthome_open_homepage):
     assert "По SMS на номер " in get_code_page.check_sent_code_confirm_message()
 
 
-def test_start_web_authorize_captcha(browser, start_web_open_homepage):
-    reg_page = RegPageHelper(browser)
-    get_code_page = GetCodePageHelper(browser)
-    reg_page.enter_email("ivanov@gmail.com")
-    get_code_page.click_on_get_code()
-    assert get_code_page.check_error_message() == "Неверно введен текст с картинки"
-
-
-@pytest.mark.parametrize("email", TestDataSet.wrong_phone_or_email,
-                         ids=TestDataSet.wrong_phone_or_email_ids)
-def test_start_web_authorize_negative(browser, start_web_open_homepage, email):
+@pytest.mark.parametrize("email", TestDataSet.invalid_phone_or_email,
+                         ids=TestDataSet.invalid_phone_or_email_ids)
+def test_start_web_invalid_phone_or_email(browser, start_web_open_homepage, email):
     reg_page = RegPageHelper(browser)
     get_code_page = GetCodePageHelper(browser)
     reg_page.enter_email(email)

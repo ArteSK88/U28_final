@@ -17,7 +17,10 @@ class RegisterLocators:
 
 
 class RegPageHelper(BasePage):
-    def enter_username(self, username):
+    def click_on_first_name(self):
+        return self.find_element(RegisterLocators.FIRST_NAME_LOCATOR).click()
+
+    def enter_first_name(self, username):
         username_field = self.find_element(RegisterLocators.FIRST_NAME_LOCATOR)
         username_field.click()
         username_field.send_keys(username)
@@ -28,6 +31,9 @@ class RegPageHelper(BasePage):
         surname_field.click()
         surname_field.send_keys(surname)
         return surname_field
+
+    def click_on_surname(self):
+        return self.find_element(RegisterLocators.SURNAME_LOCATOR).click()
 
     def select_region(self, region_index):
         self.find_element(RegisterLocators.DROPDOWN_LIST_LOCATOR).click()
