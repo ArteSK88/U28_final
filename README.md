@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>
-readme
-</title>
-</head>
-<body>
 <h3>Оглавление:</h3>
 <a href="#p1">Обзор</a></br>
 <br><a href="#p2">Команды запуска через Terminal</a></br>
@@ -158,6 +150,3 @@ readme
 <b>test_elk_unconfirmed_password</b>
 <br>попытка отправки формы регистрации без подтверждения пароля, либо при несовпадающих паролях</br>
 </p></p>
-
-</body>
-</html>
