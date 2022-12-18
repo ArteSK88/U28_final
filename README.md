@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+readme
+</title>
+</head>
+<body>
 <h3>Оглавление:</h3>
 <a href="#p1">Обзор</a></br>
 <br><a href="#p2">Команды запуска через Terminal</a></br>
@@ -10,12 +18,11 @@
 <h3>Обзор:</h3>
 
 Проект содержит автотесты для UI тестирования сервисов:
-<br> | 
-<a href="https//lk.rt.ru">ЕЛК Web</a> | 
-<a href="https//my.rt.ru">Онлайм Web</a> | 
-<a href="https//start.rt.ru">Старт Web</a> | 
-<a href="https//lk.smarthome.rt.ru">Умный дом Web</a> | 
-<a href="https//key.rt.ru">Ключ Web</a> | 
+<br> | [ЕЛК Web](https://lk.rt.ru) | 
+[Онлайм Web](https://my.rt.ru) | 
+[Старт Web](https://start.rt.ru) | 
+[Умный дом Web](https://lk.smarthome.rt.ru) | 
+[Ключ Web](https://key.rt.ru) | 
 </br>
 <br>Chromedriver добавлен в файлы проекта</br>
 <br>Наборы тестовых данных хранятся в файле test_data.py</br>
@@ -151,3 +158,6 @@
 <b>test_elk_unconfirmed_password</b>
 <br>попытка отправки формы регистрации без подтверждения пароля, либо при несовпадающих паролях</br>
 </p></p>
+
+</body>
+</html>
