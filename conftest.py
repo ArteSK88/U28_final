@@ -23,12 +23,6 @@ def elk_open_homepage(browser):
     auth_page.go_to_site(TestUrls.elk)
     yield
 
-@pytest.fixture()
-def elk_session_homepage(browser):
-    auth_page = AuthPageHelper(browser)
-    auth_page.keep_session(TestUrls.elk)
-    yield
-
 
 @pytest.fixture()
 def elk_open_sign_up_page(browser):
@@ -52,17 +46,20 @@ def start_web_open_homepage(browser):
     auth_page.go_to_site(TestUrls.start_web)
     yield
 
+
 @pytest.fixture()
 def smarthome_open_homepage(browser):
     auth_page = AuthPageHelper(browser)
     auth_page.go_to_site(TestUrls.smarthome)
     yield
 
+
 @pytest.fixture()
 def key_web_open_homepage(browser):
     auth_page = AuthPageHelper(browser)
     auth_page.go_to_site(TestUrls.key_web)
     yield
+
 
 @pytest.fixture()
 def onlime_open_homepage(browser):

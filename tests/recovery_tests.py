@@ -5,7 +5,6 @@ from pages.recovery_page import RecoveryPageHelper
 
 from test_data import TestDataSet
 
-# python -m pytest -v --driver Chrome --driver-path "./chromedriver" tests/recovery_tests.py --alluredir=allureres
 
 @allure.description("обход капчи")
 @pytest.mark.parametrize("username", TestDataSet.test_name, ids=TestDataSet.test_name_ids)

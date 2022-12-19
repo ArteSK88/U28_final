@@ -2,10 +2,6 @@ import pytest
 from pages.auth_page import AuthPageHelper
 from test_data import TestDataSet
 
-# python -m venv venv
-# venv\scripts\activate
-# python -m pytest -v --driver Chrome --driver-path "./chromedriver" tests/auth_tests.py
-
 
 def test_elk_default_tab(browser, elk_open_homepage):
     auth_page = AuthPageHelper(browser)
@@ -36,9 +32,8 @@ def test_elk_switch_to_phone_tab(browser, elk_open_homepage):
     assert auth_page.check_tel_tab_active()
 
 
-"""разобраться с куками!!!"""
 @pytest.mark.xfail(AuthPageHelper.check_captcha, reason="captcha")
-def test_elk_phone_authorization_no_such_user(browser, elk_session_homepage):
+def test_elk_phone_authorization_no_such_user(browser, elk_open_homepage):
     auth_page = AuthPageHelper(browser)
     auth_page.select_tel_tab()
     auth_page.enter_username("1234567890")

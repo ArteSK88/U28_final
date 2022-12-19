@@ -81,7 +81,7 @@ def test_elk_sign_up_invalid_password(browser, elk_open_sign_up_page, password):
         reg_page.click_on_confirm_password()
         if password == TestDataSet.invalid_pswd[1]:
             assert reg_page.check_input() == "Длина пароля должна быть не менее 8 символов"
-        elif password in [TestDataSet.invalid_pswd[2],TestDataSet.invalid_pswd[4]]:
+        elif password in [TestDataSet.invalid_pswd[2], TestDataSet.invalid_pswd[4]]:
             assert reg_page.check_input() == "Пароль должен содержать хотя бы одну заглавную букву"
         elif password == TestDataSet.invalid_pswd[3]:
             assert reg_page.check_input() == "Пароль должен содержать хотя бы одну прописную букву"
@@ -107,4 +107,3 @@ def test_elk_unconfirmed_password(browser, elk_open_sign_up_page, pswd2):
         assert reg_page.check_input() == "Длина пароля должна быть не менее 8 символов"
     else:
         assert reg_page.check_input() == "Пароли не совпадают"
-
