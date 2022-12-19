@@ -29,6 +29,9 @@
 Активация скриптов виртуального окружения:
 >venv\scripts\activate
 
+Вывод отчетов в allure:
+>allure serve allureres
+
 Запуск тестов на странице авторизации auth_tests.py:
 >python -m pytest -v --driver Chrome --driver-path "./chromedriver" tests/auth_tests.py
 
@@ -37,6 +40,9 @@
 
 Запуск тестов на странице восставновления пароля recovery_tests.py:
 >python -m pytest -v --driver Chrome --driver-path "./chromedriver" tests/recovery_tests.py
+
+Запуск тестов на странице восставновления пароля recovery_tests.py с подготовкой отчетов в allure:
+>python -m pytest -v --driver Chrome --driver-path "./chromedriver" tests/recovery_tests.py --alluredir=allureres
 
 Запуск тестов на странице регистрации reg_tests.py:
 >python -m pytest -v --driver Chrome --driver-path "./chromedriver" tests/reg_tests.py</p>
